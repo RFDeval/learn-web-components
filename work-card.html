@@ -1,0 +1,131 @@
+<template>
+  <style>
+    :host {
+      display: inline-block;
+      width: 255px;
+    }
+    .wrapper {
+      padding: 40px 20px;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 0 8px #ccc;
+    }
+    .avatar {
+      text-align: center;
+    }
+    .avatar img {
+      display: inline-block;
+      width: 160px;
+      height: 160px;
+      border: none;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #f8f8f8;
+    }
+    .list {
+      padding-left: 0;
+      margin-top: 40px;
+      margin-bottom: 0;
+      list-style-type: none;
+    }
+    .item {
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10;
+    }
+    .item span {
+      display: inline-block;
+    }
+    .label {
+      flex: 0 0 auto;
+      color: #39c;
+    }
+    .value {
+      flex: 1;
+      border-bottom: 1px dashed #ccc;
+      color: #666;
+      font-weight: 700;
+    }
+  </style>
+  <div class="wrapper">
+    <slot></slot>
+    <div class="avatar">
+      <img id="avatar" src="" alt="avatar">
+    </div>
+    <ul class="list">
+      <li class="item">
+        <span class="label">姓名：</span>
+        <span id="name" class="value"></span>
+      </li>
+      <li class="item">
+        <span class="label">部门：</span>
+        <span id="department" class="value"></span>
+      </li>
+      <li class="item">
+        <span class="label">职位：</span>
+        <span id="position" class="value"></span>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  // 创建自定义元素
+  window.customElements.define('work-card', class extends HTMLElement {
+    // 订阅属性
+    static get observedAttributes() {
+      return [ 'avatar', 'name', 'department', 'position' ]
+    }
+    
+    // 初始化
+    constructor() {
+      super()
+      
+      // 获取属性数据
+      this.avatar = this.getAttribute('avatar')
+      this.name = this.getAttribute('name')
+      this.department = this.getAttribute('department')
+      this.position = this.getAttribute('position')
+      
+      // 获取模板
+      const $template = document.currentScript.ownerDocument.querySelector('template')
+      const content = $template.content
+
+      // 创建影子节点
+      const shadowRoot = this.attachShadow({ mode: 'open' })
+      
+      // 将模板插入到影子节点
+      shadowRoot.appendChild(content.cloneNode(true))
+
+      // 获取数据节点
+      this.$avatar = shadowRoot.querySelector('#avatar')
+      this.$name = shadowRoot.querySelector('#name')
+      this.$department = shadowRoot.querySelector('#department')
+      this.$position = shadowRoot.querySelector('#position')
+    }
+    
+    // 组件插入DOM钩子
+    connectedCallback() {
+      this.render()
+    }
+
+    // 属性变化钩子
+    attributeChangedCallback(attrName, oldValue, newValue) {
+      this[attrName] = newValue
+      this.render()
+    }
+    
+    // 打招呼
+    sayHello () {
+      alert(`大家好，我是：${this.name}`)
+    }
+
+    // 渲染
+    render() {
+      this.$avatar.setAttribute('src', this.avatar)
+      this.$name.textContent = this.name
+      this.$department.textContent = this.department
+      this.$position.textContent = this.position
+    }
+  })
+</script>
