@@ -1,7 +1,7 @@
 # 面纱后的 Web Components 
 
 ### Web Components 是啥？
-Web Components 是一组由不同技术组合而成，用于创建或扩展可复用的自定义元素，以便于在Web程序中引用的规范。
+Web Components 是一组由不同技术组合而成，用于创建或扩展可复用的自定义元素，以便于在Web程序中引用的规范。  
 它主要由以下4项技术组成：
 * [Custom Elements（自定义元素）](http://w3c.github.io/webcomponents/spec/custom/)
 * [Shadow DOM（影子DOM）](http://w3c.github.io/webcomponents/spec/shadow/)
@@ -9,12 +9,12 @@ Web Components 是一组由不同技术组合而成，用于创建或扩展可�
 * [HTML Imports（HTML导入）](http://w3c.github.io/webcomponents/spec/imports/)
 
 ### Web Components 能干啥？
-* 提供创建或扩展跨平台的，可复用的Web组件的方法
-* 提供原生支持，无需引入库或框架即可使用
-* 提供熟悉的编程模型，只需使用HTML、CSS和JS来构建
-* 可以隔离DOM和CSS，使之与当前宿主文档的其它DOM和CSS不会产生冲突
-* 可以与其它任何Web框架一起使用而不会产生冲突
-* 可以使用浏览器DevTools工具很好的开发调试
+* 提供创建或扩展跨平台的，可复用的Web组件的方法。
+* 提供原生支持，无需引入库或框架即可使用。
+* 提供熟悉的编程模型，只需使用HTML、CSS和JS来构建。
+* 可以隔离DOM和CSS，使之与当前宿主文档的其它DOM和CSS不会产生冲突。
+* 可以与其它任何Web框架一起使用而不会产生冲突。
+* 可以使用浏览器DevTools工具很好的开发调试。
 
 ### Web Components 粗体验
 我们来试着创建一个名为`work-card`的组件，通过它来简单体验一下 Web Components 的构建过程。  
@@ -68,7 +68,7 @@ window.customElements.define('work-card', class extends HTMLElement {
 
 ```html
 <template>
-  <style>...</style>
+  <style></style>
   <div class="wrapper">
     <slot></slot>
     <div class="avatar">
@@ -105,7 +105,7 @@ window.customElements.define('work-card', class extends HTMLElement {
 一个组件的结构大概长成这样子，请看：
 ```html
 <template>
-  <style>...</style>
+  <style></style>
   <div class="wrapper">
     <slot></slot>
     <div class="avatar">
@@ -163,7 +163,7 @@ window.customElements.define('work-card', class extends HTMLElement {
 </body>
 ```
 
-至此，我们学会了怎样使用 Web Components 创建一个组件并且使用它。是不是很方便呢
+至此，我们学会了怎样使用 Web Components 创建一个组件并且使用它。怎么样？是不是很方便呢？
 
 ### Web Components 兼容性
 Web Components 规范尚在草案阶段，目前市面上的多数浏览器都不能很好的运行 Web Components ，只有Chrome能完美的运行。  
